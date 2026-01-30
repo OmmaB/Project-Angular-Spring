@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Liste des Produits</h2>
+
+  <button class="btn btn-primary mb-3" routerLink="/add-produit">Ajouter Produit</button>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Images</th>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let p of produits">
+        <td>
+          <img
+            [src]="'http://localhost:8080/api/image/get/' + p.idProduit"
+            width="80"
+            class="rounded"
+          />
+        </td>
+        <td>{{ p.idProduit }}</td>
+        <td>{{ p.nomProduit }}</td>
+        <td>{{ p.prixProduit }}</td>
+        <td>{{ p.dateCreation | date }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="supprimerProduit(p)">Supprimer</button>
+          <button class="btn btn-warning btn-sm" [routerLink]="['/update-produit', p.idProduit]">
+            Modifier
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
